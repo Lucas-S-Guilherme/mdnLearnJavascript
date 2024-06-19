@@ -1,0 +1,73 @@
+= Primeiros Passos Com JavaScript
+:sectnums:
+
+== O que é JavaScript
+
+
+As APIs proveem muitas funcionalidades ao JS.
+
+Geralmente são divididas em duas categorias:
+
+    *APIs de navegadores*: já vem implementadas no navegador, e são capazes de expor dados do ambiente do computador, ou fazer coisas complexas e úteis.
+
+    *APIs de terceiros*: não estão implementados no navegador automaticamente.
+
+== O que JavaScript está fazendo na sua página web?
+
+=== Ordem de Execução do JavaScript
+
+Normalmente é executado de cima para baixo.
+
+=== Código Interpretado x compilado
+
+O JS é uma linguagem interpretada, a compilação é manipulada em tempo de execução, e não antes.
+
+=== Lado do servidor x Lado do Cliente
+
+=== Código dinâmico x estático
+
+*Código dinâmico* atualiza a exibição de uma página web/app para mostrar coisas diferentes em circunstâncias diferentes, gerando novo conteúdo como solicitado. 
+
+*Código estático* só mostra o mesmo conteúdo o tempo todo.
+
+== Como adicionar JS em uma página
+
+Utiliza-se o elemento <script>.
+
+=== Javascript interno
+
+Exemplo em: PrimeiroPassosComJavaScript/applyjs.html
+
+=== JS externo
+
+É utilizado um arquivo .js com os algoritmos, e não colocado diretamente na página html.
+
+Exemplo em: PrimeiroPassosComJavaScript/applyjs.html
+
+=== Manipuladores de JS inline
+
+incluir funções, métodos, algoritmos diretamente nos elementos html.
+
+*É uma má prática de desenvolvimento!*
+
+=== Estratégias para o carregamento de scripts
+
+Um problema comum é que todo o HTML de uma página é carregado na ordem em que ele aparece. Se estiver usando JS para manipular alguns elementos da página (sendo mais preciso, manipular o DOM), o código não irpa funcionar caso o JS for carregado e executado antes mesmo dos elementos HTML estarem disponíveis.
+
+Algumas soluções para isso são exemplificadas abaixo.
+
+==== Ouvidor de eventos
+
+No exemplo interno, pode-se colocar o algoritmo em volta deste código:
+
+[source, javascript]
+----
+document.addEventListener("DOMContentLoaded", function () {
+    ...
+});
+----
+
+
+
+
+
