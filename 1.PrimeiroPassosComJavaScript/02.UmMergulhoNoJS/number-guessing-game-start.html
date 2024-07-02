@@ -34,9 +34,9 @@
     <p>We have selected a random number between 1 and 100. See if you can guess it in 10 turns or fewer. We'll tell you if your guess was too high or too low.</p>
 
     <div class="form">
-      <label for="guessField">Enter a guess: </label>
-      <input type="number" min="1" max="100" required id="guessField" class="guessField">
-      <input type="submit" value="Submit guess" class="guessSubmit">
+      <label for="campoPalpite"> Digite seu palpite: </label>
+      <input type="text" id="campoPalpite" class="campoPalpite">
+      <input type="submit" value="Enviar Palpite" class="envioPalpite">
     </div>
 
     <div class="resultParas">
@@ -58,6 +58,76 @@
 
     var contagemPalpites = 1;
     var botaoReinicio;
+    campoPalpite.focus(); // coloca o cursor no campo input
+
+    function conferirPalpite () {
+      var palpiteUsuario = Number (campoPalpite.value); // number (método embutido)
+      if (contagemPalpites === 1) {
+        palpites.textContent = "Palpites anteriores: ";
+      }
+    
+      palpites.textContent += palpiteUsuario + " ";
+
+      if (palpiteUsuario === numeroAleatorio) {
+        ultimoResultado.textContent = "Parabéns! Você acertou!";
+        ultimoResultado.style.backgroundColor = "green";
+        baixoOuAlto.textContent = "";
+        configFimDeJogo();
+      } else if (contagemPalpites === 10) {
+        ultimoResultado.textContent = "!!! FIM DE JOGO !!!";
+        baixoOuAlto.textContent = "";
+        configFimDeJogo();
+      } else {
+        ultimoResultado.textContent = "Errado!";
+        ultimoResultado.style.backgroundColor = "red";
+        if (palpiteUsuario < numeroAleatorio) {
+          baixoOuAlto.textContent = "Seu palpite está muito baixo!";
+          } else if (palpiteUsuario > numeroAleatorio) {
+            baixoOuAlto.textContent = "Seu palpite está muito alto!";
+          }
+        }
+
+          contagemPalpites++;
+          campoPalpite.value = "";
+          campoPalpite.focus();
+    }
+
+    envioPalpite.addEventListener("click", conferirPalpite); //evento, neste caso não é necessário escrever os parenteses da função que será executado com o evento, no caso conferirPalpite()
+
+    function configFimDeJogo(){
+      campoPalpite.disabled = true; // desabilita entrada de texto e clique
+      envioPalpite.disabled = true;
+      botaoReinicio = document.createElement("button");
+      botaoReinicio.textContent = "Iniciar novo jogo";
+      document.body.appendChild(botaoReinicio);
+      botaoReinicio.addEventListener("click", reiniciarJogo);
+    }
+
+    function reiniciarJogo() {
+      contagemPalpites = 1;
+      var reiniciarParas = document.querySelectorAll(".resultParas"); // seleciona a div container
+      for (var i = 0; i < reiniciarParas.length; i++){
+        reiniciarParas[i].textContent = "";
+      }
+
+      botaoReinicio.parentNode.removeChild(botaoReinicio);
+
+      campoPalpite.disabled = false;
+      envioPalpite.disabled = false;
+      campoPalpite.value = "";
+      campoPalpite.focus();
+
+      ultimoResultado.style.backgroundColor = "white";
+
+      numeroAleatorio = Math.floor(Math.random() * 100 / 1);
+
+    }
+
+
+
+
+
+
 
 
     </script>

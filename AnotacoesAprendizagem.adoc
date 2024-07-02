@@ -167,5 +167,26 @@ var contagemPalpites = 1;
 var botaoReinicio;
 ----
 
+==== Eventos
 
+São ações que acontecem no navegador, como um botão sendo clicado, ou uma página carregada, ou um vídeo tocando; ações as quais podemos responder executando blocos de código.
 
+Os contrutores que monitoram os acontecimentos de eventos são chamados *event listeners*, e os blocos de código executados em resposta ao acontecimento do evento são chamados de *event handlers*.
+
+==== Finalizando a funcionalidade do jogo
+
+Configurada função para fim de jogo.
+
+==== Loops
+
+==== Uma pequena discussão sobre objetos
+
+Em JavaScript, tudo é um objeto.
+
+O objeto é uma coleção de funcionalidades relacionadas armazenadas em um único agrupamento.
+
+==== Brincando com objetos no navegador
+
+== O que deu errado? Resolvendo problemas no JavaScript
+
+=== Tipos de Erros
