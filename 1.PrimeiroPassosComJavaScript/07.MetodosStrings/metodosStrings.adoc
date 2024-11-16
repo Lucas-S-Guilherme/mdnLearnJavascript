@@ -1,0 +1,122 @@
+== Métodos úteis de string
+
+=== Strings como objetos
+
+Tudo em JS é um objeto.
+
+Ao criar uma variável e instanciar o valor de uma cadeia de texto, ela torna-se uma instância do objeto string, e como resultado, um grande número de propriedades e métodos disponíveis para ela.
+
+==== Saber o comprimento de uma string
+[source, javascript]
+----
+let browserType = "mozilla";
+console.log(browserType.length);
+----
+
+==== Recuperar um caractere de string específico
+[source, javascript]
+----
+console.log(browserType[0]); // primeiro elemento da string
+console.log(browserType[browserType.length - 1]); // ultimo elemento
+----
+
+==== Encontrando uma substring dentro de uma string e extraindo-a
+
+[source, javascript]
+----
+// dá como resultado a posição em que se inicia a substring
+console.log(browserType.indexOf("zilla"));
+// retorna -1 quando não acha a substring
+----
+
+==== Encontrar todas as substrings que contém 'mozilla'
+[source, javascript]
+----
+if (browserType.indexOf("mozilla") !== -1) {
+    // faz coisas com a string
+}
+----
+
+==== Extrair caracteres
+
+[source, javascript]
+----
+// usado para extrair caracteres, segundo parâmetro é a posição seguinte do último caractere a ser extraído.
+console.log(browserType.slice(0, 3)); // retorna: moz
+
+// para extrair tudo a partir de um caractere
+console.log(browserType.slice(2)); // zilla
+----
+
+==== Mudando entre maiúsculas e miniúsculas
+[source, javascript]
+----
+let textoQualquer = "Space Marine 2";
+textoQualquer.toLowerCase();
+textoQualquer.toUpperCase();
+----
+
+==== Atualizando partes de uma string
+[source, javascript]
+----
+console.log(browserType.replace("moz", "van")); // vanilla
+
+//para atualizar o valor da variável, faça como abaixo:
+browserType = browserType.replace("moz", "van");
+----
+
+=== Exercícios com strings
+[source, javascript]
+----
+// Filtrando mensagem de saudação 
+
+var greetings = ['Happy Birthday!',
+    'Merry Christmas my love',
+    'A happy Christmas to all the family',
+    'You\'re all I want for Christmas',
+    'Get well soon'];
+
+for(var i = 0; i < greetings.length; i++) {
+var input = greetings[i];
+if(greetings[i].indexOf('Christmas') !== -1) {
+var result = input;
+console.log(result);
+}}
+----
+
+[source, javascript]
+----
+// Corrigindo a capitalização
+
+var cities = ['lonDon', 'ManCHESTer', 'BiRmiNGHAM', 'liVERpoOL'];
+
+for(var i = 0; i < cities.length; i++) {
+  var input = cities[i];
+  var lower = input.toLowerCase();
+  var firstLetter = lower.slice(0,1);
+  var capitalized = lower.replace(firstLetter,firstLetter.toUpperCase());
+  var result = capitalized;
+  console.log(result);
+
+}
+----
+
+[source, javascript]
+----
+// Fazendo novas strings a partir de partes antigas
+
+var stations = ['MAN675847583748sjt567654;Manchester Piccadilly',
+    'GNF576746573fhdg4737dh4;Greenfield',
+    'LIV5hg65hd737456236dch46dg4;Liverpool Lime Street',
+    'SYB4f65hf75f736463;Stalybridge',
+    'HUD5767ghtyfyr4536dh45dg45dg3;Huddersfield'];
+
+for(var i = 0; i < stations.length; i++) {
+var input = stations[i];
+var code = input.slice(0,3);
+var semiC = input.indexOf(';'); //pega o indice do ;
+var nameStation = input.slice(semiC + 1);
+var result = code + ': ' + nameStation;
+console.log(result);
+}
+----
