@@ -1,0 +1,63 @@
+== Armazenando as informações que você precisa - Variáveis
+
+Variáveis podem conter praticamente qualquer coisa. Elas contém valores, mas não são os valores e sim os containers para eles.
+
+=== Declarando uma variável
+
+Palavra reservada: var.
+
+[source, javascript]
+----
+var meuNome;
+var minhaIdade;
+----
+
+=== Inicializando uma variável
+
+[source, javascript]
+----
+meuNome = "Chris";
+minhaIdade = 37;
+----
+
+
+=== A diferença entre var e let
+
+Sempre utilize let. 
+
+var surgiu primeiro mas possuí algumas caracteristicas que permitem falhas de código.
+
+=== Tipo de variáveis
+
+[source, javascript]
+----
+//boolean
+let estouVivo = false;
+let comparacao = 3 < 6;
+
+//array
+let umArray = [1, 2, 3, 4];
+let outroArray = ["lucas", "guilherme"];
+
+----
+
+=== Objetos
+
+[source, javascript]
+----
+//declarando o objeto
+var cachorro = { nome: "Totó", raca: "Dálmata"};
+
+//acessando a informação
+console.log(cachorro.nome);
+----
+
+=== Digitação permissiva
+
+JS é uma linguagem de tipagem dinamica, não precisa especificar o tipo de dados de que uma variável irá conter.
+
+Caso seja necessário, a função typeof nomeDaVariavel retorna o tipo.
+
+=== Constants em JS
+
+Constantes permitem armazenar valores que não podem ser alterados.

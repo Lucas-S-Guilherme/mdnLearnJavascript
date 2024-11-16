@@ -1,0 +1,3 @@
+== O que é um Array?
+
+Objetos que contém múltiploes valores armazenados em uma lista

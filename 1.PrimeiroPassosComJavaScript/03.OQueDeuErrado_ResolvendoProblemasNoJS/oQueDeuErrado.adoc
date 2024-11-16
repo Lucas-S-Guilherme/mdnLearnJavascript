@@ -1,0 +1,39 @@
+== O que deu errado? Resolvendo problemas no JavaScript
+
+=== Tipos de Erros
+
+    *Erros de sintaxe*: erro de ortografia da linguagem. Geralmente há uma mensagem de erro.
+
+    *Erros lógicos*: o código está correto, mas dá resultados incorretos. Geralmente não há mensagem de erro resultante.
+
+=== Um exemplo errôneo
+
+Exemplo no github.
+
+Abrir o console do navegador para ver o erro.
+
+=== Consertando erros de sintaxe
+
+Analisar as informações que o console exibem de erro é de suma importância, nele foi possível ver a linha do código que estava com erro, e qual era o erro.
+
+[source, javascript]
+----
+ const lowOrHi = document.querySelector(".lowOrHi"); //ao selecionar uma classe, é necessário digitar .nomeDaClasse   
+----
+
+=== Um erro de lógica
+
+O jogo sempre apresentava o número aleatório como sendo 1, a partir do seguinte código: Math.floor(Math.random()) + 1
+
+O erro aqui estava em desconhecer o funcionamento da função Math.random(), pois ela retorna um número pseudo-aleatório no intervalo [0, 1[,(0 incluso, 1 exclusivo) que depois pode dimensionar para um intervalo desejado. E era usado com a função Math.floor() que arredondo o número para baixo, dando então, sempre 0 e sendo somado + 1, dando sempre o resultado final 1!
+
+=== Outros erros comuns
+
+Deixar de inserir ; ao final de uma linha de código.
+    
+    SyntaxError: missing ; before statement
+
+
+Deixar de fechar o parênteses no final ao invocar uma função/método
+    
+    SyntaxError: missing ) after argument list

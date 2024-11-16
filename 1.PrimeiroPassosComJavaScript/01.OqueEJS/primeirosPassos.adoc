@@ -1,0 +1,109 @@
+== Primeiros Passos Com JavaScript
+
+=== O que é JavaScript
+
+As APIs proveem muitas funcionalidades ao JS.
+
+Geralmente são divididas em duas categorias:
+
+    *APIs de navegadores*: já vem implementadas no navegador, e são capazes de expor dados do ambiente do computador, ou fazer coisas complexas e úteis.
+
+    *APIs de terceiros*: não estão implementados no navegador automaticamente.
+
+=== O que JavaScript está fazendo na sua página web?
+
+==== Ordem de Execução do JavaScript
+
+Normalmente é executado de cima para baixo.
+
+==== Código Interpretado x compilado
+
+O JS é uma linguagem interpretada, a compilação é manipulada em tempo de execução, e não antes.
+
+==== Lado do servidor x Lado do Cliente
+
+==== Código dinâmico x estático
+
+*Código dinâmico* atualiza a exibição de uma página web/app para mostrar coisas diferentes em circunstâncias diferentes, gerando novo conteúdo como solicitado. 
+
+*Código estático* só mostra o mesmo conteúdo o tempo todo.
+
+=== Como adicionar JS em uma página
+
+Utiliza-se o elemento <script>.
+
+==== Javascript interno
+
+Exemplo em: PrimeiroPassosComJavaScript/applyjs.html
+
+==== JS externo
+
+É utilizado um arquivo .js com os algoritmos, e não colocado diretamente na página html.
+
+Exemplo em: PrimeiroPassosComJavaScript/applyjs.html
+
+==== Manipuladores de JS inline
+
+incluir funções, métodos, algoritmos diretamente nos elementos html.
+
+*É uma má prática de desenvolvimento!*
+
+==== Estratégias para o carregamento de scripts
+
+Um problema comum é que todo o HTML de uma página é carregado na ordem em que ele aparece. Se estiver usando JS para manipular alguns elementos da página (sendo mais preciso, manipular o DOM), o código não irpa funcionar caso o JS for carregado e executado antes mesmo dos elementos HTML estarem disponíveis.
+
+Algumas soluções para isso são exemplificadas abaixo.
+
+===== Ouvidor de eventos
+
+No exemplo do código JS colocado de maneira interna no html, pode-se colocar o algoritmo em volta deste código:
+
+[source, javascript]
+----
+document.addEventListener("DOMContentLoaded", function () {
+    ...
+});
+----
+
+Este código é um _event listener_ (ouvidor de eventos), que ouve e aguarda o disparo do evento "DOMContentLoaded" vindo do browser, evento que significa que o corpo do HTML está completamente carregado e pronto. O código JS que estiver dentro desse bloco não será executado até que o evento seja disparado, portanto, o erro será evitado. 
+
+No *exemplo de código JS externo*, para resolver o problema advindo do não carregamento da página html, utiliza-se o atributo #defer#, que informa ao browser para continuar renderizando o conteúdo HTML uma vez que a tag #<script># foi atingida.
+
+[source, html]
+<script src="script.js" defer></script>
+
+Neste caso, o script e o HTML irão carregar de forma simultânea e o código irá funcionar.
+
+===== async e defer
+
+Esses dois atributos podem ser usados para evitar o problema com o bloqueio de scripts.
+
+*async* = os scripts que são carregados usando este atributo irão baixar o script sem bloquear a renderização da página e irão executar imediatamente após o script terminar de ser disponibilizado. Não garante que os scripts carregados rodem em uma ordem específica, mas garante que eles impeçam o carregamento do restante da página. Seu melhor uso é quando os scripts de uma página rodam de forma independente entre si e também não dependem de nenhum outro script.
+
+[source, html]
+<script async src="js/vendor/jquery.js"></script>
+<script async src="js/script2.js"></script>
+<script async src="js/script3.js"></script>
+
+No exemplo acima, não dá para garantir que o script. jquery.js carregará antes ou depois do script2.js e script3.js . Nesse caso, se alguma função desses scripts dependerem de algo vindo do jquery, ela produzirá um erro pois o jquery ainda não foi definido/carregado quando os scripts executaram essa função.
+
+#async# deve ser usado quando houver muitos scripts rodando em background, e você precisa que estejam disponíiveis o mais rápido possível.
+
+*defer*: os scripts com o atributo #defer# irão carregar na ordem que aparecem na página.
+
+Resumindo:
+
+    * async e defer istruem o browser a baixar os scripts numa thread (processo) à parte, enquanto o resto da página (o DOM, etc.) está sendo baixado e disponibilizado de forma não bloqueante.
+    * Se os seus scripts precisam rodar imediatamente, sem que dependam de outros para serem executados, use async.    
+    * Se seus scripts dependem de outros scripts ou do DOM completamente disponível em tela, carregue-os usando defer e coloque os elementos <script> na ordem exata que deseja que sejam carregados.
+
+==== Comentários
+
+De uma linha //
+
+Multiplas linhas 
+
+/* Seu
+texto
+aqui 
+*/

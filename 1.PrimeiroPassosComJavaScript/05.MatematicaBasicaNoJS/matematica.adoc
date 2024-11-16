@@ -1,0 +1,122 @@
+== Matemática básica no JavaScript — números e operadores
+
+=== Tipos de números
+
+=== Tudo é número para mim.
+
+Usamos diferentes termos para descrever diferentes tipos de números decimais, por exemplo:
+
+    Integers (inteiros) são números inteiros, ex. 10, 400 ou -5.
+    Números de ponto flutuante (floats) tem pontos e casas decimais, por exemplo 12.5 e 56.7786543.
+    Doubles são tipos de floats que tem uma precisão maior do que os números de ponto flutuante padrões (significando que eles são mais precisos, possuindo uma grande quantidade de casas decimais).
+
+Temos até mesmo diferentes tipos de sistemas numéricos! O decimal tem por base 10 (o que significa que ele usa um número entre 0–9 em cada casa), mas temos também algo como:
+
+    Binário — A linguagem de menor level dos computadores; 0s e 1s.
+    Octal — Base 8, usa um caractere entre 0–7 em cada coluna.
+    Hexadecimal — Base 16, usa um caractere entre 0–9 e depois um entre a–f em cada coluna. Você pode já ter encontrado esses números anteriormente, trabalhando com cores no CSS.
+
+
+Todo número no javascript recebe o tipo number.
+
+=== Operadores aritméticos
+
+% restante = retorna o resto da divisão em números
+
+==== Precedência de operador
+
+No JS é respeitado a precedencia: multiplicação e divisão primeiro, adição e subtração depois.
+
+Para substituir a precedência do operador, coloque entre parentesês.
+
+=== Operadores de Incremento e decremento
+
+contagemPalpite++;
+
+fichasRestantes--;
+
+=== Operadores de atribuição
+
+Atribuição de adição: +=
+
+Atribuição de subtração: -=
+
+Atribuição de multiplicação *=
+
+Atribuição de divisão /=
+
+=== Aprendizado ativo: dimensionando uma canvas box
+
+=== Operadores de comparação
+
+|===
+| Operador | nome | Propósito | Exemplo 
+| === | igualdade estrita | Verifica se os valores são identicos entre si | 5 === 2 + 4
+| !== | Não-igualdade-estrita | Verifica se valores não são identicos entre si | 5 !== 2 + 3
+|===
+
+Não fiz dos outros porque são os conhecidos < > <= >=
+
+No JS existe o igual a == e o valor igual e tipo igual ===
+
+De modo que:
+
+[source, javascript]
+----
+let x = 5;
+console.log(x == "5"); // true
+console.log(x === "5"); // false
+----
+
+[source, javascript]
+----
+let x = 5;
+console.log(x != 8); // true
+console.log(x != "5"); // false
+console.log(x !== 5); // false
+console.log(x !== "5"); // true
+----
+
+Todo resultado de uma compração é false ou true.
+
+=== Operadores Lógicos
+
+and = &&
+|| = or
+! = not
+
+==== Operador condicional ternário
+
+Sintaxe:
+
+    _variableName = (condition) ? value1 : value2_
+
+Caso a condição seja verdadeira será retornado o valor um, caso contrário, será retornado o valor 2.
+
+[source, javascript]
+----
+let y = 5;
+let res;
+res = (y == 5) ? "Sim" : "Não"; // 'Sim'
+----
+
+==== Operador coalescente nulo ??
+
+O operador ?? retorna o primeiro argumento se ele não for nulo (null ou undefined), caso contrário retorna o segundo argumento.
+
+[source, javascript]
+----
+let name1 = null;
+let text = "missing";
+let result = name1 ?? text;
+
+console.log(result); //missing
+----
+
+==== O operador de encadeamento opcional (?.)
+
+[source, javascript]
+----
+const car = { type: "Fiat", model: "500", color: "white"};
+console.log(car?.name); // undefined
+----
