@@ -1,3 +1,14 @@
 == O que é um Array?
 
-Objetos que contém múltiploes valores armazenados em uma lista
+Objetos que contém múltiploes valores armazenados em uma lista.
+
+=== Criando uma array
+
+Construídas de colchetes, contendo uma lista de itens separadas por vírgulas.
+
+=== Encontrando o comprimento de uma array
+
+=== Alguns métodos úteis em array
+
+=== Adicionando e removendo itens de arrays
+
