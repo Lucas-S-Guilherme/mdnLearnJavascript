@@ -68,3 +68,23 @@ console.log(itemRemovido);
 
 // Aprendizado Ativo
 
+//Imprimindo aqueles produtos
+let total;
+var products = ['Underpants:6.99',
+    'Socks:5.99',
+    'T-shirt:14.99',
+    'Trousers:31.99',
+    'Shoes:23.99'];
+   
+   for(var i = 0; i < products.length; i++) {
+    var subArray = products[i].split(':'); // divide uma string em substring e retorna-os como um array
+    console.log("Resultado do split: ");
+    console.log(subArray); // cada nome e valor vira um item do array
+    var productName = subArray[0];
+    var price = Number(subArray[1]);
+    total += price;
+    itemText = productName + ' — $' + price;
+    console.log(itemText);   
+   }
+   
+
