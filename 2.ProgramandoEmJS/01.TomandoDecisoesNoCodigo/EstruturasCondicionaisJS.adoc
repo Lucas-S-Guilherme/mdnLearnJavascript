@@ -1,0 +1,64 @@
+== Tomando decisões no seu código - condicionais
+
+=== Declarações if ... else
+
+[source, javascript]
+----
+if (condicao) {
+  codigo para executar caso a condição seja verdadeira
+} else {
+  senão, executar este código
+}
+----
+
+Não é obrigatório o uso do else.
+
+==== Encadear else if
+
+[source, javascrip]
+----
+
+if () {
+
+} else if () {
+
+} else if () {
+
+} else {
+
+}
+----
+
+Qualquer valor que não seja false, undefined, null, 0, NaN, ou uma string vazia ('') retorna true quando testado como uma instrução condicional, portanto, você pode simplesmente usar um nome de variável para testar se é verdadeiro , ou mesmo que existe (ou seja, não é indefinido).
+
+=== Aninhando if ... else
+
+=== instruções switch
+
+switch (expression) {
+  case choice1:
+    run this code;
+    break;
+
+  case choice2:
+    run this code instead;
+    break;
+
+  // include as many cases as you like
+
+  default:
+    actually, just run this code;
+}
+
+não é necessário incluir a seção default.
+
+=== Operador ternário
+
+----
+(condição) ? Se verdadeiro execute este código : Senão execute este código
+----
+
+=== aprendizado ativo
+
+
+

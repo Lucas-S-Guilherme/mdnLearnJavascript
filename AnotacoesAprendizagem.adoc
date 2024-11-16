@@ -18,3 +18,5 @@ include::1.PrimeiroPassosComJavaScript/06.TrabalhandoComTexto/trabalhandoComText
 include::1.PrimeiroPassosComJavaScript/07.MetodosStrings/metodosStrings.adoc[]
 
 include::1.PrimeiroPassosComJavaScript/08.Arrays/arrays.adoc[]
+
+include::2.ProgramandoEmJS/01.TomandoDecisoesNoCodigo/EstruturasCondicionaisJS.adoc[]
