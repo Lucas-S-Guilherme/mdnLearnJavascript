@@ -20,3 +20,6 @@ include::1.PrimeiroPassosComJavaScript/07.MetodosStrings/metodosStrings.adoc[]
 include::1.PrimeiroPassosComJavaScript/08.Arrays/arrays.adoc[]
 
 include::2.ProgramandoEmJS/01.TomandoDecisoesNoCodigo/EstruturasCondicionaisJS.adoc[]
+
+include::2.ProgramandoEmJS/02.CodigoEmLoop/CodigoEmLoop.adoc[]
+

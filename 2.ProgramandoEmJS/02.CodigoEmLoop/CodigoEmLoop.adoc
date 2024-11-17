@@ -1,0 +1,56 @@
+== Código em loop
+
+=== Mantenha-me no loop (laço)
+
+Um loop geralmente possui:
+
+O contador.
+
+Condição de saída.
+
+Iterador.
+
+[source, javascript]
+----
+for (inicializador; condição-saída; expressão-final) {
+  // código para executar
+}
+----
+
+=== Saindo do loop com break
+
+Encerra as iterações.
+
+[source, javascript]
+----
+var contacts = [
+  "Chris:2232322",
+  "Sarah:3453456",
+  "Bill:7654322",
+  "Mary:9998769",
+  "Dianne:9384975",
+];
+var para = document.querySelector("p");
+var input = document.querySelector("input");
+var btn = document.querySelector("button");
+
+btn.addEventListener("click", function () {
+  var searchName = input.value;
+  input.value = "";
+  input.focus();
+  for (var i = 0; i < contacts.length; i++) {
+    var splitContact = contacts[i].split(":");
+    if (splitContact[0] === searchName) {
+      para.textContent =
+        splitContact[0] + "'s number is " + splitContact[1] + ".";
+      break;
+    } else {
+      para.textContent = "Contact not found.";
+    }
+  }
+});
+----
+
+=== Ignorando iterações com continue
+
+A instrução continue, faz pular para a próxima iteração do loop.
