@@ -54,3 +54,50 @@ btn.addEventListener("click", function () {
 === Ignorando iterações com continue
 
 A instrução continue, faz pular para a próxima iteração do loop.
+
+[source]
+----
+for (inicialização; condição; incremento) {
+    if (condiçãoParaPular) {
+        continue; // Pula para a próxima iteração
+    }
+    // Código a ser executado se "continue" não for chamado
+}
+----
+
+=== while e do ... while
+
+==== while
+
+Os mesmos três itens ainda estão presentes, e são definidos na mesma ordem do laço for, porém o inicializador é definido antes do loop, a condição fica ao lado e while, e o incremento no fim do código.
+
+[source]
+----
+inicializador
+while (condição-saída) {
+  // code to run
+
+  expressão-final: em geral incremento, decremento, ou outros.
+}
+----
+
+==== do while
+
+Nesse tipo de loop, o código entre chaves é sempre executado pelo menos uma vez antes da verificação ser feita.
+
+[soucre]
+----
+initializer
+do {
+  // code to run
+
+  final-expression
+} while (exit-condition)
+----
+
+=== Aprendizado ativo: contagem regressiva!
+
+Aprendizado ativo: contagem regressiva!
+
+Aprendizado ativo: preenchendo uma lista de convidados!
+
