@@ -24,3 +24,11 @@ while (i < cats.length) {
   i++;
   console.log(info)
 }
+
+var people = ['Chris', 'Anne', 'Colin', 'Terri', 'Phil', 'Lola', 'Sam', 'Kay', 'Bruce'];
+
+var i = 0;
+
+while(people.length){
+  
+}

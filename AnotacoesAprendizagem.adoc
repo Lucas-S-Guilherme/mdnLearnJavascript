@@ -23,3 +23,5 @@ include::2.ProgramandoEmJS/01.TomandoDecisoesNoCodigo/EstruturasCondicionaisJS.a
 
 include::2.ProgramandoEmJS/02.CodigoEmLoop/CodigoEmLoop.adoc[]
 
+include::3.funcoes/funcoes.adoc[]
+

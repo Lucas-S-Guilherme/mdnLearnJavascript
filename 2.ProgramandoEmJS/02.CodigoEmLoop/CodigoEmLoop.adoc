@@ -85,7 +85,7 @@ while (condição-saída) {
 
 Nesse tipo de loop, o código entre chaves é sempre executado pelo menos uma vez antes da verificação ser feita.
 
-[soucre]
+[source]
 ----
 initializer
 do {

@@ -1,0 +1,8 @@
+== Funções - Blocos reutilizáveis de código
+
+Praticamente sempre que você faz uso de uma estrutura JavaScript em que tem um par de parenteses () e você não está usando uma estrutura embutida da linguagem como um for, while ou do while, ou declaração condicional if...else, você está usando uma função.
+
+Algumas das funções embutidas de navegador não são parte do core da linguagem JavaScript - algumas são definidas como partes de APIs do navegador.
+
+=== Funções versus métodos
+
