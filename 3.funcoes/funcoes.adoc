@@ -1,8 +1,124 @@
-== Funções - Blocos reutilizáveis de código
+= Funções em JavaScript
 
-Praticamente sempre que você faz uso de uma estrutura JavaScript em que tem um par de parenteses () e você não está usando uma estrutura embutida da linguagem como um for, while ou do while, ou declaração condicional if...else, você está usando uma função.
+== O que são funções?
+Funções são blocos de código reutilizáveis que realizam tarefas específicas. Elas permitem que você evite repetir o mesmo código várias vezes.
 
-Algumas das funções embutidas de navegador não são parte do core da linguagem JavaScript - algumas são definidas como partes de APIs do navegador.
+[source, javascript]
+----
+function minhaFuncao() {
+  // Código a ser executado
+}
+----
 
-=== Funções versus métodos
+== Funções embutidas do navegador
+JavaScript possui várias funções embutidas, como `replace()`, `join()` e `Math.random()`.
 
+[source, javascript]
+----
+var texto = "Olá, mundo!";
+var novoTexto = texto.replace("mundo", "JavaScript");
+console.log(novoTexto); // "Olá, JavaScript!"
+----
+
+== Funções vs Métodos
+- **Funções**: Blocos de código independentes.
+- **Métodos**: Funções definidas dentro de objetos.
+
+== Funções personalizadas
+Você pode criar suas próprias funções para realizar tarefas específicas.
+
+[source, javascript]
+----
+function desenhar() {
+  // Código para desenhar algo
+}
+desenhar(); // Invocando a função
+----
+
+== Funções anônimas
+Funções sem nome, frequentemente usadas com manipuladores de eventos.
+
+[source, javascript]
+----
+document.querySelector("button").onclick = function() {
+  alert("Botão clicado!");
+};
+----
+
+== Parâmetros de funções
+Funções podem receber parâmetros para personalizar seu comportamento.
+
+[source, javascript]
+----
+function saudacao(nome) {
+  alert("Olá, " + nome + "!");
+}
+saudacao("João"); // "Olá, João!"
+----
+
+== Parâmetros opcionais
+Alguns parâmetros são opcionais e têm valores padrão.
+
+[source, javascript]
+----
+function juntar(array, separador = ",") {
+  return array.join(separador);
+}
+console.log(juntar(["a", "b", "c"])); // "a,b,c"
+console.log(juntar(["a", "b", "c"], " - ")); // "a - b - c"
+----
+
+== Função escopo e conflitos
+
+Funções possuem um escopo próprio e separado em seu próprio compartimento, inacesível de dentro de outras funções ou de código fora das funções.
+
+== Aprendizado Ativo: brincando com o escopo
+
+== Funções dentro de funções
+
+Você pode chamar funções dentro de outras funções para manter o código organizado e modular. Isso é útil para dividir tarefas complexas em partes menores e mais gerenciáveis.
+
+=== Exemplo de código sem escopo correto
+No exemplo abaixo, a variável `myValue` não está acessível dentro das subfunções, causando um erro `ReferenceError`.
+
+[source, javascript]
+----
+function minhaFuncaoPrincipal() {
+  var myValue = 1;
+
+  subFuncao1(); // Erro: myValue não está definido
+  subFuncao2();
+  subFuncao3();
+}
+
+function subFuncao1() {
+  console.log(myValue); // Erro: myValue não está no escopo
+}
+----
+
+=== Solução: Passando valores como parâmetros
+Para corrigir o problema, passe a variável como parâmetro para as subfunções.
+
+[source, javascript]
+----
+function minhaFuncaoPrincipal() {
+  var myValue = 1;
+
+  subFuncao1(myValue); // Passando myValue como argumento
+  subFuncao2(myValue);
+  subFuncao3(myValue);
+}
+
+function subFuncao1(value) {
+  console.log(value); // 1
+}
+----
+
+=== Por que isso funciona?
+- **Escopo**: Variáveis definidas em uma função não são automaticamente acessíveis em outras funções.
+- **Parâmetros**: Passar valores como argumentos garante que as subfunções tenham acesso aos dados necessários.
+
+=== Benefícios
+- **Organização**: Divide o código em partes menores e mais legíveis.
+- **Reutilização**: Subfunções podem ser reutilizadas em outros contextos.
+- **Manutenção**: Facilita a correção e atualização do código.
