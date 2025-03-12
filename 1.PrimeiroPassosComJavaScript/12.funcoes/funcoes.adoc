@@ -122,3 +122,6 @@ function subFuncao1(value) {
 - **Organização**: Divide o código em partes menores e mais legíveis.
 - **Reutilização**: Subfunções podem ser reutilizadas em outros contextos.
 - **Manutenção**: Facilita a correção e atualização do código.
+
+== Construa sua própria função
+
