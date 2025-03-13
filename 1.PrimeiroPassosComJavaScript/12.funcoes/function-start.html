@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <title>Function start</title>
+    <style>
+      .msgBox {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%,-50%);
+        width: 242px;
+        background: #eee;
+      }
+
+      .msgBox p {
+        line-height: 1.5;
+        padding: 10px 20px;
+        color: #333;
+        padding-left: 82px;
+        background-position: 25px center;
+        background-repeat: no-repeat;
+      }
+
+      .msgBox button {
+        background: none;
+        border: none;
+        position: absolute;
+        top: 0;
+        right: 0;
+        font-size: 1.1rem;
+        color: #aaa;
+      }
+
+    </style>
+  </head>
+  <body>
+    <button>Display message box</button>
+
+    <script>
+
+      var btn = document.querySelector("button");
+      btn.onclick = function () {
+        displayMessage("Your inbox is almost full — delete some mails", "warning"); //especifica parâmetros dentro de parênteses para a função que é chamada, sem chama-lá diretamente por meio da função anônima 9não fica no escopo imediato)
+      };
+
+      function displayMessage(msgText, msgType) {
+        var html = document.querySelector("html"); //seleciona o elemento html e armazena a uma referência a ele em uma variável chamada html.
+
+        var panel = document.createElement("div"); //cria um elemento <div> e armazena uma referência à ele em uma variável chamada panel.
+        panel.setAttribute("class", "msgBox"); //seta o atributo class com um valor de msgBox
+        html.appendChild(panel); //especifica o painel <div> como o filho que queremos acrescentar dentro do elemento pai <html>
+
+        var msg = document.createElement("p");
+        msg.textContent = msgText;
+        panel.appendChild(msg);
+
+        var closeBtn = document.createElement("button");
+        closeBtn.textContent = "x";
+        panel.appendChild(closeBtn);
+
+        closeBtn.onclick = function() { //onclick = manipulador global de eventos
+          panel.parentNode.removeChild(panel); // remove um elemento específico do html
+        
+        if (msgType === "warning"){
+          msg.style.backgroundImage = "url(icons/warning.png)";
+          panel.style.backgroundColor = "red";
+        } else if (msgType === "chat") {
+          msg.style.backgroundImage = "url(icons/chat.png)";
+          panel.style.backgroundColor = "aqua";
+        } else {
+          msg.style.paddingLeft = "20px";
+        }       
+
+        };
+      }
+
+      
+
+
+    </script>
+  </body>
+</html>

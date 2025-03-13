@@ -125,3 +125,39 @@ function subFuncao1(value) {
 
 == Construa sua própria função
 
+Ao chamar uma função, quando chamada sem os parenteses, como no caso abaixo, ocorre que a função não é chamada imediatamente e sim somente depois que o botão foi clicado.
+
+[source, html]
+----
+<script>
+var html = document.querySelector("html");
+
+var panel = document.createElement("div");
+panel.setAttribute("class", "msgBox");
+html.appendChild(panel);
+
+var msg = document.createElement("p");
+msg.textContent = "This is a message box";
+panel.appendChild(msg);
+
+var closeBtn = document.createElement("button");
+closeBtn.textContent = "x";
+panel.appendChild(closeBtn);
+
+closeBtn.onclick = function () {
+  panel.parentNode.removeChild(panel);
+};
+
+</script>
+----
+
+
+[source, javascript]
+----
+btn.onclick = displayMessage; // chamada sem parenteses()
+----
+
+ Os parênteses neste contexto são às vezes chamados de "operador de invocação de função".
+
+== Melhorando a função com parâmetros
+
