@@ -40,10 +40,9 @@
 
     <script>
 
-      var btn = document.querySelector("button");
-      btn.onclick = function () {
-        displayMessage("Your inbox is almost full — delete some mails", "warning"); //especifica parâmetros dentro de parênteses para a função que é chamada, sem chama-lá diretamente por meio da função anônima 9não fica no escopo imediato)
-      };
+        const btn = document.querySelector('button');
+        btn.addEventListener('click', () => displayMessage('Brian: Hi there, how are you today?', 'chat'));; //especifica parâmetros dentro de parênteses para a função que é chamada, sem chama-lá diretamente por meio da função anônima 9não fica no escopo imediato)
+      
 
       function displayMessage(msgText, msgType) {
         var html = document.querySelector("html"); //seleciona o elemento html e armazena a uma referência a ele em uma variável chamada html.
