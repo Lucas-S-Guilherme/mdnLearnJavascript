@@ -2,6 +2,8 @@
 
 Eventos são ações ou ocorrências que acontecem no sistema que estamos desenvolvendo, no qual este te alerta sobre essas ações para que você possa responder de alguma forma, se desejado.
 
+https://dom.spec.whatwg.org/[STANDARD DOM]
+
 https://developer.mozilla.org/en-US/docs/Web/Events[Eventos que podem ser utilizados]
 
 Cada evento possuí um *manipulador de eventos* (event handler), em geral uma função JS definida pelo usuário, que será executado quando o evento for disparado. Em alguns casos, são chamados de *ouvite de eventos* (event listeners).
@@ -22,4 +24,12 @@ Os eventos podem diferir em diferentes ambientes de programação.
 
 Existem muitas propriedades diferentes disponíveis.
 
-Parei aqui: https://developer.mozilla.org/pt-BR/docs/Learn_web_development/Core/Scripting/Events
+https://developer.mozilla.org/en-US/docs/Web/API/Element[Consultar mais propriedades aqui!]
+
+
+==== Manipuladores de eventos in-line - NÃO USE ESSE
+
+==== addEventListener() e removeEventListener()
+
+
+
