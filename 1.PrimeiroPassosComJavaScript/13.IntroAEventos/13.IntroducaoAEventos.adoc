@@ -1,0 +1,25 @@
+== Introdução à eventos
+
+Eventos são ações ou ocorrências que acontecem no sistema que estamos desenvolvendo, no qual este te alerta sobre essas ações para que você possa responder de alguma forma, se desejado.
+
+https://developer.mozilla.org/en-US/docs/Web/Events[Eventos que podem ser utilizados]
+
+Cada evento possuí um *manipulador de eventos* (event handler), em geral uma função JS definida pelo usuário, que será executado quando o evento for disparado. Em alguns casos, são chamados de *ouvite de eventos* (event listeners).
+
+A definição desse bloco de código para rodar em resposta a um evento disparado, é chamado de registro de um manipulador de eventos.
+
+Os ouvintes escutam o evento acontecendo, e o manipulador é o código que roda em seposta a este acontecimento.
+
+NOTE: É importante notar que eventos web não são parte do core da linguagem JavaScript — elas são definidas como parte das APIs JavaScript incorporadas ao navegador.
+
+Exemplo 1: link:exemplo1.html[Codigo HTML], link:exemplos.js[Code JS]
+
+Os eventos podem diferir em diferentes ambientes de programação.
+
+=== Formas de usar eventos da Web
+
+==== Propriedades do manipulador de eventos
+
+Existem muitas propriedades diferentes disponíveis.
+
+Parei aqui: https://developer.mozilla.org/pt-BR/docs/Learn_web_development/Core/Scripting/Events

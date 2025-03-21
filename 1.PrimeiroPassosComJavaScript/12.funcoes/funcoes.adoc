@@ -1,4 +1,6 @@
-= Funções em JavaScript
+== Funções em JavaScript
+
+Em JavaScript, funções são objetos de primeira classe, pois elas podem ter propriedades e métodos como qualquer outro objeto. O que as difere de outros objetos é que as funções podem ser chamados. Em resumo, elas são objetos Function.
 
 == O que são funções?
 Funções são blocos de código reutilizáveis que realizam tarefas específicas. Elas permitem que você evite repetir o mesmo código várias vezes.
@@ -44,6 +46,27 @@ document.querySelector("button").onclick = function() {
   alert("Botão clicado!");
 };
 ----
+
+== Arrow function
+
+[source]
+----
+([param] [, param]) => {
+   instruções
+}
+
+param => expressão
+----
+
+`*param*`
+
+ O nome de um argumento. Quando não há argumentos deve ser indicado com o uso de parênteses (). Para apenas um argumento os parênteses não são obrigatórios. Por Exemplo `foo => 1`
+
+`*instrução ou expressão`
+
+ Múltiplas instruções precisam ser envolvidas por chaves. Uma única expressão não requer chaves. A expressão também é implicitamente o valor de retorno dessa função.
+
+ https://developer.mozilla.org/pt-BR/docs/Web/JavaScript/Reference/Functions/Arrow_functions[Arrow Functions]
 
 == Parâmetros de funções
 Funções podem receber parâmetros para personalizar seu comportamento.
@@ -161,3 +184,127 @@ btn.onclick = displayMessage; // chamada sem parenteses()
 
 == Melhorando a função com parâmetros
 
+Não funcionou a exibição da imagem, pulei para o próximo tópico.
+
+== Um Parâmetro mais complexo
+
+== Valores de retorno de função
+
+O valor de retorno geralmente é usado onde a função é uma etapa intermediária, para serem usados no próximo estágio do processo.
+
+Algumas funções não retornam um valor, sendo o valor de retorno listado como void ou undefined.
+
+Para retornar um valor em uma função personalizada, é preciso usar a palavra chave *return*.
+
+=== Aprendizagem ativa: nossa própria função de valor de retorno
+
+Utilizado o arquivo https://github.com/mdn/learning-area/blob/main/javascript/building-blocks/functions/function-library.html[function-library]
+
+== Aprofundar conteúdo em
+
+https://developer.mozilla.org/pt-BR/docs/Web/JavaScript/Reference/Functions[Funções detalhadas]
+
+=== Parâmetros Rest
+
+https://developer.mozilla.org/pt-BR/docs/Web/JavaScript/Reference/Functions/rest_parameters[Parâmetros Rest]
+
+*Sintaxe*
+
+[source]
+----
+function(a, b, ...theArgs) {
+  // ...
+}
+----
+
+Se o último argumento nomeado de uma função tiver prefixo com `...`, ele irá se tornar um array em que os elementos de 0 (inclusive) até theArgs.lenght (exclusivo - não conta o último, porque inicia em 0) são disponibilizados pelos argumentos atuais e passados à função.
+
+No exemplo acima, `theArgs`irá coletar o terceiro argumento da função (porquê o primeiro é mapeado `a`, e o segundo para `b`) e assim por diante em todos os argumentos consecutivos.
+
+*Explicação sobre Rest Parameters em JavaScript*
+
+Antes da introdução dos *rest parameters* no ES6 (ECMAScript 2015), se você quisesse capturar todos os argumentos passados para uma função além dos parâmetros nomeados, você precisava usar o objeto `arguments` e convertê-lo em um array. O objeto `arguments` é um objeto semelhante a um array que contém todos os argumentos passados para a função, mas não é um array real, então você não pode usar métodos de array diretamente nele.
+
+Aqui está um exemplo de como isso era feito:
+
+[source,javascript]
+----
+function f(a, b) {
+  // Converte `arguments` em um array, excluindo os dois primeiros argumentos (a e b)
+  var args = Array.prototype.slice.call(arguments, f.length);
+
+  console.log(args); // args contém todos os argumentos além de `a` e `b`
+}
+
+f(1, 2, 3, 4, 5); // Saída: [3, 4, 5]
+----
+
+Neste exemplo:
+- `a` e `b` são os dois primeiros argumentos.
+- `arguments` é um objeto que contém todos os argumentos passados para a função.
+- `Array.prototype.slice.call(arguments, f.length)` converte `arguments` em um array real, começando do índice `f.length` (que é 2, pois `f` tem dois parâmetros nomeados: `a` e `b`).
+
+*Com Rest Parameters*
+
+Com a introdução dos *rest parameters*, você pode capturar todos os argumentos restantes em um array de forma muito mais simples e legível. O *rest parameter* é representado por `...` seguido do nome do array que conterá os argumentos restantes.
+
+Aqui está o mesmo exemplo usando *rest parameters*:
+
+[source,javascript]
+----
+function f(a, b, ...args) {
+  console.log(args); // args contém todos os argumentos além de `a` e `b`
+}
+
+f(1, 2, 3, 4, 5); // Saída: [3, 4, 5]
+----
+
+Neste exemplo:
+- `a` e `b` são os dois primeiros argumentos.
+- `...args` captura todos os argumentos restantes e os coloca em um array chamado `args`.
+
+*Comparação*
+
+- **Antes dos Rest Parameters:**
+[source,javascript]
+----
+function f(a, b) {
+  var args = Array.prototype.slice.call(arguments, f.length);
+  console.log(args);
+}
+----
+
+- **Com Rest Parameters:**
+[source,javascript]
+----
+function f(a, b, ...args) {
+  console.log(args);
+}
+----
+
+ Vantagens dos Rest Parameters
+
+1. **Legibilidade:** O código fica mais limpo e fácil de entender.
+2. **Simplicidade:** Não é necessário converter `arguments` em um array manualmente.
+3. **Segurança:** `arguments` pode ser confuso e propenso a erros, especialmente em funções aninhadas ou arrow functions, onde `arguments` não se comporta como esperado.
+
+ Exemplo Adicional
+
+Vamos ver outro exemplo para consolidar o entendimento:
+
+[source,javascript]
+----
+function sum(...numbers) {
+  return numbers.reduce((acc, current) => acc + current, 0);
+}
+
+console.log(sum(1, 2, 3, 4)); // Saída: 10
+----
+
+Neste exemplo:
+- `...numbers` captura todos os argumentos passados para a função `sum` e os coloca em um array chamado `numbers`.
+- `numbers.reduce` soma todos os elementos do array.
+
+Espero que isso tenha esclarecido como os *rest parameters* funcionam e como eles simplificam o trabalho com argumentos em funções JavaScript!
+
+===
