@@ -31,5 +31,214 @@ https://developer.mozilla.org/en-US/docs/Web/API/Element[Consultar mais propried
 
 ==== addEventListener() e removeEventListener()
 
+Esse novo mecanismo possuí vantagens sobre os mecanismos mais antigos discutidos anteriormente.
+
+Por exemplo por possuir uma função contraparte `removeEventListener()`, que remove um listener adicionado anteriormente.
+
+[source, javascript]
+----
+//Exemplo acima reescrito, utilizando addEventListener() e removeEventListener()
+
+var btn = document.querySelector("button");
+
+function bgChange() {
+    var rndCol = 
+    "rgb(" + random(255) + "," + random(255) + "," + random(255) + ")";
+    document.body.style.backgroundColor = rndCol;
+}
+
+btn.addEventListener("click", bgChange); // 2 parâmetros:
+// 1 -o nome do evento para o qual registramos esse manipulador ("click"),
+// 2 - e o código que compreende a função do manipulador que queremos executar em resposta a ele (bgChange)
+----
+
+Também é apropriado colocar todo o código dentro da função addEventListener(), em uma função anônima:
+
+[source, javascript]
+----
+btn.addEventListener("click", function (){
+    var rndCol = "rgb(" + random(255) + "," + random(255) + "," + random(255) + ")";
+    document.body.style.backgroundColor = rndCol;
+});
+----
+
+Função de contraparte:
+
+[source, javascript]
+----
+btn.removeEventListener ("click", bgChange);
+----
+
+Com esse novo mecanismo també é possível registrar vários manipuladores para o mesmo ouvinte. Os dois manipuladores abaixo não seriam aplicados, porque a segunda linha sobrescreveria o valor de `onclick`:
+
+`myElement.onclick = functionA;`
+
+`myElement.onclick = functionB;`
+
+Já com o novo mecanismo, isso funciona:
+
+`myElement.addEventListener("click", functionA);`
+
+`myElement.addEventListener("click", functionB);`
+
+Ambas funções serão executadas quando o elemento for clicado.
+
+*Mais recursos e opções:*
+
+https://developer.mozilla.org/pt-BR/docs/Web/API/EventTarget/addEventListener[addEventListener()]
+
+https://developer.mozilla.org/pt-BR/docs/Web/API/EventTarget/removeEventListener[removeEventListener()]
+
+==== Qual mecanismo usar?
+
+Nunca usar os atributos do manipulador de eventos direto no HTML.
 
 
+- Usar as propriedades do manipulador de eventos têm menos poder e opções, mas melhor compatibilidade entre os navegadores.
+
+- Usar eventos DOM nível 2 (addEventListener(), etc.) são mais poderosos, mas também podem se tornar mais complexos e menos bem suportados.
+
+==== Outros Conceitos de evento
+
+*OBJETOS DE EVENTO*
+
+Parâmetro especificado dentro de uma função de manipulador de eventos, com um nome como `event`, `evt`, ou simplesmente `e`. Chamado de *event object*, e é passado automaticamente para os maipuladores de eventos para fornecer recursos e informações extras.
+
+NOTE: Você pode usar qualquer nome que desejar para o objeto de evento — você só precisa escolher um nome que possa ser usado para referenciá-lo dentro da função de manipulador de eventos. e/evt/event são mais comumente usados pelos desenvolvedores porque são curtos e fáceis de lembrar. É sempre bom manter um padrão.
+
+Reescrita do exemplo de cor aleatória, incluindo um *event object*:
+
+[source, javascript]
+----
+function bgChange(e) {
+    var rndCol =
+    "rgb(" + random(255) + "," + random(255) + "," + random(255) + ")";
+    e.target.style.backgroundColor = rndCol; // target é uma referência ao elemento em que o evento acabou de ocorrer
+    console.log(e);
+}
+
+btn.addEventListener("click", bgChange);
+----
+
+Consulte mais objetos de Eventos: https://developer.mozilla.org/pt-BR/docs/Web/API/Event[Event]
+
+==== Evitando o comportamento padrão
+
+Exemplo com `preventDefault()` link:evitandoComportamentoPadrao.html[Veja Aqui]
+
+==== Borbulhamento e captura de eventos
+
+O conceito de **borbulhamento** e **captura de eventos** é fundamental para entender como os eventos são tratados em elementos HTML quando interagimos com uma página web. Vamos explicar de forma simples e com exemplos práticos.
+
+=== O que são borbulhamento e captura de eventos?
+
+Quando você clica em um elemento na página (como um botão ou um vídeo), o navegador precisa decidir **qual código JavaScript deve ser executado** em resposta a esse clique. Para isso, ele usa dois mecanismos chamados **captura** e **borbulhamento**.
+
+1. **Fase de Captura**:
+   - O navegador começa pelo elemento mais externo (por exemplo, a tag `<html>`) e vai "descendo" até o elemento que foi clicado.
+   - Durante essa descida, ele verifica se algum dos elementos ancestrais (pais) tem um **manipulador de eventos** configurado para a fase de captura.
+
+2. **Fase de Borbulhamento**:
+   - Depois de chegar ao elemento clicado, o navegador "sobe" novamente, passando pelos elementos ancestrais.
+   - Durante essa subida, ele verifica se algum dos elementos ancestrais tem um **manipulador de eventos** configurado para a fase de borbulhamento.
+
+Por padrão, os manipuladores de eventos são configurados para a fase de **borbulhamento**.
+
+=== Exemplo prático
+
+Vamos usar um exemplo simples para ilustrar:
+
+[source,html]
+----
+<button>Display video</button>
+
+<div class="hidden">
+  <video>
+    <source src="rabbit320.mp4" type="video/mp4" />
+    <source src="rabbit320.webm" type="video/webm" />
+    <p>Your browser doesn't support HTML5 video.</p>
+  </video>
+</div>
+----
+
+Aqui, temos:
+- Um botão que, ao ser clicado, exibe uma caixa (`<div>`) com um vídeo.
+- Dentro dessa caixa, há um vídeo (`<video>`).
+
+=== Código JavaScript:
+
+[source,javascript]
+----
+// Quando o botão é clicado, a caixa do vídeo é exibida
+btn.onclick = function () {
+  videoBox.setAttribute("class", "showing");
+};
+
+// Quando a área do <div> é clicada, a caixa é ocultada
+videoBox.onclick = function() {
+  videoBox.setAttribute('class', 'hidden');
+};
+
+// Quando o vídeo é clicado, ele começa a ser reproduzido
+video.onclick = function() {
+  video.play();
+};
+----
+
+=== O problema:
+Quando você clica no vídeo, duas coisas acontecem:
+1. O vídeo começa a ser reproduzido (por causa do `video.onclick`).
+2. A caixa que contém o vídeo é ocultada (por causa do `videoBox.onclick`).
+
+Isso ocorre porque o vídeo está **dentro** da caixa (`<div>`). Quando você clica no vídeo, o evento de clique "borbulha" para o elemento pai (a caixa), e ambos os manipuladores de eventos são executados.
+
+=== Como resolver isso?
+
+Para evitar que o evento de clique no vídeo "borbulhe" para a caixa, podemos usar o método **`stopPropagation()`**. Esse método impede que o evento continue subindo na cadeia de elementos.
+
+=== Código corrigido:
+
+[source,javascript]
+----
+video.onclick = function (e) {
+  e.stopPropagation(); // Impede o borbulhamento
+  video.play(); // Reproduz o vídeo
+};
+----
+
+Agora, quando você clicar no vídeo:
+1. O vídeo começará a ser reproduzido.
+2. O evento de clique **não** será propagado para a caixa (`<div>`), então ela não será ocultada.
+
+=== Resumindo
+
+- **Borbulhamento**: O evento "sobe" pelos elementos ancestrais após ser acionado no elemento clicado.
+- **Captura**: O evento "desce" pelos elementos ancestrais antes de chegar ao elemento clicado.
+- **`stopPropagation()`**: Impede que o evento continue subindo ou descendo na cadeia de elementos.
+
+No exemplo, usamos `stopPropagation()` para evitar que o clique no vídeo afetasse a caixa que o contém. Isso é útil quando você quer que um evento seja tratado apenas pelo elemento clicado, sem afetar os elementos pais.
+
+=== Outro exemplo para fixar
+
+Imagine uma lista de itens:
+
+[source,html]
+----
+<ul id="lista">
+  <li>Item 1</li>
+  <li>Item 2</li>
+  <li>Item 3</li>
+</ul>
+----
+
+Se você adicionar um evento de clique a cada `<li>` e também à `<ul>`, o clique em um item da lista acionará o evento no `<li>` **e** na `<ul>` (por causa do borbulhamento). Se você quiser que o evento seja tratado apenas no `<li>`, pode usar `stopPropagation()`.
+
+---
+
+==== Delegação de eventos
+
+O borbulhar também nos permite aproveitar a delegação de eventos — esse conceito depende do fato de que, se você quiser que algum código seja executado quando clicar em qualquer um de um grande número de elementos filho, você pode definir o ouvinte de evento em seu pai e ter os eventos que acontecem neles confluem com o pai, em vez de precisar definir o ouvinte de evento em cada filho individualmente.
+
+Um bom exemplo é uma série de itens de lista — Se você quiser que cada um deles apareça uma mensagem quando clicado, você pode definir o ouvinte de evento click no pai <ul>, e ele irá aparecer nos itens da lista.
+
+Este conceito é explicado mais adiante no blog de David Walsh, com vários exemplos — veja https://davidwalsh.name/event-delegate[Como funciona a delegação de eventos em JavaScript.]
