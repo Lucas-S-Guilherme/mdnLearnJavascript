@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <title>Object-oriented JavaScript example</title>
+  </head>
+
+  <body>
+    <p>This example requires you to enter commands in your browser's JavaScript console (see <a href="https://developer.mozilla.org/en-US/docs/Learn/Common_questions/What_are_browser_developer_tools">What are browser developer tools</a> for more information).</p>
+    
+    <script>
+
+        var pessoa = {
+            nome: ['lucas', 'guilherme'],
+            idade: 30,
+            sexo: 'masculino',
+            interesses: ["musica", 'jogos'],
+            bio: function () {
+                alert(
+                    this.nome[0] +
+                    " " +
+                    this.nome[1] +
+                    " tem " +
+                    this.idade +
+                    " anos de idade. Ele gosta de " +
+                    this.interesses[0] +
+                    " e " +
+                    this.interesses[1] +
+                    "."
+                );
+            },
+            saudacao: function () {
+                alert("Oi! Eu sou " + this.nome[0] + ".");
+            },            
+        };
+
+            var myDataName = "altura";
+            var myDataValue = "1.75m";
+            pessoa[myDataName] = myDataValue;
+
+        // também é possível criar novos membros
+        pessoa["olhos"] = 'castanho';
+        pessoa.despedida = function () {
+            alert("Adeus a todos!");
+        };
+
+        // inserindo nome e valor personilizado em um objeto
+        var myDataName = nameInput.value;
+        var myDataValue = nameValue.value;
+
+        pessoa[myDataName] = myDataValue;
+
+
+    </script>
+  </body>
+
+</html>
